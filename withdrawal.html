@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retragere - ACC Investment</title>
+<style>
+body {
+  background-color: #000;
+  color: gold;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 30px;
+}
+h1 { color: #00ff99; margin-bottom: 20px; }
+select, input {
+  width: 80%;
+  max-width: 350px;
+  padding: 10px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid gold;
+  background-color: #111;
+  color: gold;
+  font-size: 16px;
+}
+.amount { font-size: 22px; font-weight: bold; margin: 15px 0; color: #00ff99; }
+.btn {
+  background: linear-gradient(90deg, gold, #00ff99);
+  color: black;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.btn:hover { transform: scale(1.05); }
+.back-link { display: block; margin-top: 25px; color: #aaa; text-decoration: none; }
+.back-link:hover { color: gold; }
+
+/* Popup */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center; align-items: center;
+  z-index: 9999;
+}
+.popup-box {
+  background: linear-gradient(145deg, #111, #1a1a1a);
+  border: 1px solid gold;
+  border-radius: 16px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  color: gold;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+  animation: popupShow 0.3s ease;
+}
+@keyframes popupShow { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.popup-box h2 { color: #00ff99; margin-bottom: 10px; }
+.popup-box p { color: #fff; font-size: 15px; margin-bottom: 20px; line-height: 1.5em; }
+.popup-btn {
+  background: linear-gradient(90deg, gold, #00ff99);
+  color: #000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.popup-btn:hover { transform: scale(1.05); }
+</style>
+</head>
+<body>
+<h1>Retragere Fonduri</h1>
+
+<select id="bank">
+  <option value="">Selectează Banca</option>
+  <option value="BCR">Banca Comercială Română (BCR)</option>
+  <option value="BRD">BRD - Groupe Société Générale</option>
+  <option value="BT">Banca Transilvania</option>
+  <option value="ING">ING Bank</option>
+  <option value="Raiffeisen">Raiffeisen Bank</option>
+  <option value="CEC">CEC Bank</option>
+  <option value="AlphaBank">Alpha Bank</option>
+  <option value="PatriaBank">Patria Bank</option>
+  <option value="IdeaBank">Idea Bank</option>
+  <option value="LibraBank">Libra Internet Bank</option>
+  <option value="GarantiBank">Garanti Bank</option>
+  <option value="OTPBank">OTP Bank Romania</option>
+</select>
+
+<input type="text" id="account" placeholder="Număr cont bancar">
+<input type="text" id="owner" placeholder="Nume titular cont">
+
+<div class="amount">Suma: 300,335.16 RON</div>
+
+<button class="btn" onclick="showPopup()">Retrage</button>
+
+<a href="index.html" class="back-link">⬅ Înapoi la Pagina Principală</a>
+
+<!-- Popup Modal -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <h2>💰 Taxă Retragere Necesara</h2>
+    <p>
+      Pentru a procesa retragerea de <strong>300,335.16 RON</strong>, este necesară plata unei taxe
+      de <strong>1,500 RON</strong>.<br><br>
+      Vă rugăm să efectuați plata taxei pentru a continua retragerea.
+    </p>
+    <button class="popup-btn" onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+<script>
+function showPopup() {
+  const bank = document.getElementById("bank").value;
+  const account = document.getElementById("account").value;
+  const owner = document.getElementById("owner").value;
+  if(bank === "" || account === "" || owner === "") {
+    alert("Vă rugăm să completați toate câmpurile pentru retragere.");
+  } else {
+    document.getElementById("popup").style.display = "flex";
+  }
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
